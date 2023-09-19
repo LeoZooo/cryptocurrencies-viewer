@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 
 import Loading from './loading'
@@ -8,6 +9,7 @@ import { useGetCoinsQuery } from '../store/api/cryptoApi'
 import { SECOND_45, NUMBER_ONLY } from '../static/constant'
 
 const DataTable = () => {
+    const navigate = useNavigate();
     const { currencies, currPage, orderType } = useSelector((state) => state.cryptoSlice)
     const config = { currencies, currPage, orderType }
     // Data will be refreshed every 45 seconds
@@ -186,6 +188,13 @@ const DataTable = () => {
         },
     ];
 
+    const handleCellClick = (params) => {
+        if (params.field !== 'name') {
+            return
+        }
+        navigate(`/${params.id}`);
+    }
+
     return (
         isSuccess ?
             <div className='dataTable'>
@@ -193,13 +202,14 @@ const DataTable = () => {
                     getRowId={(row) => row.id}
                     rows={rows}
                     columns={columns}
+                    onCellClick={handleCellClick}
                     hideFooter
                     sx={{
                         fontSize: 13,
                         '& .super-app-theme--header': {
                             textTransform: 'capitalize',
                             fontSize: 14,
-                        }
+                        },
                     }}
                 />
             </div >

@@ -21,11 +21,19 @@ $pearl-white: rgb(228, 228, 228);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 2px 2px 5px grey;
+    box-shadow: 1px 1px 1px $pearl-white;
 
     .nav__title {
         color: $deep-grey;
-        cursor: default;
+        cursor: point;
+        font-size: 30px;
+        text-decoration: none;
+        transition: all 0.5s ease;
+
+        &:hover {
+            color: $light-grey;
+            transform: scale(1.01);
+        }
     }
 }
 
@@ -50,6 +58,14 @@ $pearl-white: rgb(228, 228, 228);
         display: flex;
         align-items: center;
         justify-content: left;
+        cursor: pointer;
+        transition: all 0.5s ease;
+
+        &:hover {
+            color: $light-grey;
+            transform: scale(1.01);
+
+        }
 
         .dataTable__name__img {
             height: 20px;
