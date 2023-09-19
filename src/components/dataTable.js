@@ -5,7 +5,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Loading from './loading'
 import TrendLineChart from './trendLineChart'
 import { useGetCoinsQuery } from '../store/api/cryptoApi'
-import { SECOND_45 } from '../static/constant'
+import { SECOND_45, NUMBER_ONLY } from '../static/constant'
 
 const DataTable = () => {
     const { currencies, currPage, orderType } = useSelector((state) => state.cryptoSlice)
@@ -26,7 +26,16 @@ const DataTable = () => {
             minimumFractionDigits: 0,
         });
         return formattedNumber;
+    }
 
+    const currencyComapre = (v1, v2) => {
+        if (v1 === '-') {
+            v1 = '0'
+        }
+        else if (v2 === '-') {
+            v2 = '0'
+        }
+        return parseFloat(v1.replace(NUMBER_ONLY, '')) - parseFloat(v2.replace(NUMBER_ONLY, ''))
     }
 
     if (data) {
@@ -35,15 +44,16 @@ const DataTable = () => {
             name = { name, image, symbol }
             const sparkline = sparkline_in_7d.price
             rows.push({ id, market_cap_rank, name, current_price: formatNumberWithCurrency(current_price), price_change_percentage_1h_in_currency, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, total_volume: formatNumberWithCurrency(total_volume), market_cap: formatNumberWithCurrency(market_cap), sparkline })
+            return index
         })
     }
 
     const setColorForVolume = (values, priceName) => {
         let value
-        if (priceName = 'price_change_percentage_1h_in_currency') {
+        if (priceName === 'price_change_percentage_1h_in_currency') {
             value = values.value
         }
-        else if (priceName = 'price_change_percentage_24h_in_currency') {
+        else if (priceName === 'price_change_percentage_24h_in_currency') {
             value = values.value
         }
         else {
@@ -55,7 +65,7 @@ const DataTable = () => {
         }
 
         value = Number(value).toFixed(1)
-        if (value == 0) {
+        if (value === 0) {
             value = 0
         }
         if (+value >= 0) {
@@ -98,7 +108,8 @@ const DataTable = () => {
             width: 150,
             headerClassName: 'super-app-theme--header',
             align: 'right',
-            headerAlign: 'right'
+            headerAlign: 'right',
+            sortComparator: (v1, v2) => currencyComapre(v1, v2)
         },
         {
             field: 'price_change_percentage_1h_in_currency',
@@ -135,15 +146,18 @@ const DataTable = () => {
             headerName: 'volume',
             type: 'number',
             width: 160,
+            description: 'The total volume of a cryptocurrency represents the cumulative amount of that cryptocurrency traded within a specific timeframe.',
             headerClassName: 'super-app-theme--header',
             align: 'right',
-            headerAlign: 'right'
+            headerAlign: 'right',
+            sortComparator: (v1, v2) => currencyComapre(v1, v2)
         },
         {
             field: 'market_cap',
             headerName: 'Mkt Cap',
             type: 'number',
             width: 160,
+            description: `Market cap refers to a cryptocurrency's total market value.`,
             headerClassName: 'super-app-theme--header',
             align: 'right',
             headerAlign: 'right'
@@ -152,6 +166,7 @@ const DataTable = () => {
             field: 'sparkline',
             headerName: 'Last 7 Days',
             width: 250,
+            description: 'A sparkline is a small, simple chart used to visualize data trends within a condensed space.',
             headerClassName: 'super-app-theme--header',
             align: 'center',
             headerAlign: 'center',

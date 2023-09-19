@@ -1,6 +1,8 @@
 export const URL = 'https://api.coingecko.com/api/v3/'
 export const TYPE = { CRYPTO: 'crypto' }
 
+export const NUMBER_ONLY = /[^0-9.]/g
+
 export const CURRENCIES_TYPE = { USD: 'usd', AUD: 'aud', EUR: 'eur', JPY: 'jpy' }
 
 export const PAGINATION = 100

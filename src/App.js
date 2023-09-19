@@ -20,7 +20,7 @@ const App = () => {
       const maxPage = parseInt((data.length / PAGINATION)) + 1
       dispatch(setMaxPage(maxPage))
     }
-  }, [])
+  }, [data, dispatch])
 
   return (
     <div className='app'>

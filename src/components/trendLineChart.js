@@ -48,7 +48,7 @@ const TrendLineChart = ({ data }) => {
 
         chart.setOption(option);
         return () => chart.dispose();
-    }, []);
+    }, [data, uniqueId]);
 
     return <div id={uniqueId} style={{ width: '100%', height: '180px' }}></div>;
 }
