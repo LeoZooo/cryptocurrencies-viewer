@@ -39,7 +39,7 @@ $pearl-white: rgb(228, 228, 228);
 }
 
 .dataTable {
-    height: 85vh;
+    height: 80vh;
     width: 100vw;
     padding: 0 5%;
     border-radius: 10px;
@@ -63,4 +63,14 @@ $pearl-white: rgb(228, 228, 228);
         }
     }
 
+}
+
+.pagination {
+    bottom: 0;
+    position: fixed;
+    height: 10vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -14,11 +14,6 @@ export const cryptoApi = createApi({
             query() {
                 return 'coins/list'
             },
-            transformResponse(baseQueryReturnValue) {
-                const { data } = baseQueryReturnValue
-                return data
-            },
-            keepUnusedDataFor: 60 * 5
         }),
         getCoins: builder.query({
             query(config) {

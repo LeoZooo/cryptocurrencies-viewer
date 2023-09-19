@@ -6,10 +6,8 @@ import Loading from './loading'
 import TrendLineChart from './trendLineChart'
 import { useGetCoinsQuery } from '../store/api/cryptoApi'
 import { SECOND_45 } from '../static/constant'
-import { red } from '@mui/material/colors';
 
 const DataTable = () => {
-
     const { currencies, currPage, orderType } = useSelector((state) => state.cryptoSlice)
     const config = { currencies, currPage, orderType }
     const { isSuccess, data } = useGetCoinsQuery(config, {
@@ -18,12 +16,17 @@ const DataTable = () => {
     const rows = []
 
     const formatNumberWithCurrency = (number) => {
+        if (!number) {
+            return '-'
+        }
+
         const formattedNumber = number.toLocaleString(undefined, {
             style: 'currency',
             currency: currencies,
             minimumFractionDigits: 0,
         });
         return formattedNumber;
+
     }
 
     if (data) {
@@ -31,7 +34,7 @@ const DataTable = () => {
             let { id, market_cap_rank, name, image, symbol, current_price, price_change_percentage_1h_in_currency, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, total_volume, market_cap, sparkline_in_7d } = each
             name = { name, image, symbol }
             const sparkline = sparkline_in_7d.price
-            rows.push({ id: market_cap_rank, name, current_price: formatNumberWithCurrency(current_price), price_change_percentage_1h_in_currency, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, total_volume: formatNumberWithCurrency(total_volume), market_cap: formatNumberWithCurrency(market_cap), sparkline })
+            rows.push({ id, market_cap_rank, name, current_price: formatNumberWithCurrency(current_price), price_change_percentage_1h_in_currency, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, total_volume: formatNumberWithCurrency(total_volume), market_cap: formatNumberWithCurrency(market_cap), sparkline })
         })
     }
 
@@ -45,6 +48,10 @@ const DataTable = () => {
         }
         else {
             value = values.value
+        }
+
+        if (!value) {
+            return '-'
         }
 
         value = Number(value).toFixed(1)
@@ -62,7 +69,7 @@ const DataTable = () => {
 
     const columns = [
         {
-            field: 'id',
+            field: 'market_cap_rank',
             headerName: '#',
             width: 70,
             headerClassName: 'super-app-theme--header',
@@ -159,6 +166,7 @@ const DataTable = () => {
         isSuccess ?
             <div className='dataTable'>
                 <DataGrid
+                    getRowId={(row) => row.id}
                     rows={rows}
                     columns={columns}
                     hideFooter
