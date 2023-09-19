@@ -10,11 +10,14 @@ import { SECOND_45, NUMBER_ONLY } from '../static/constant'
 const DataTable = () => {
     const { currencies, currPage, orderType } = useSelector((state) => state.cryptoSlice)
     const config = { currencies, currPage, orderType }
+    // Data will be refreshed every 45 seconds
     const { isSuccess, data } = useGetCoinsQuery(config, {
         pollingInterval: SECOND_45,
     })
     const rows = []
 
+    // Transfer nmumber to currencies 
+    // eg. 3.1 -> 'A$3.1', undefined -> '-'
     const formatNumberWithCurrency = (number) => {
         if (!number) {
             return '-'
@@ -28,6 +31,8 @@ const DataTable = () => {
         return formattedNumber;
     }
 
+    // Compare currencies type's data
+    // eg. v1 = A$34352.1 -> 34352.1 then compare
     const currencyComapre = (v1, v2) => {
         if (v1 === '-') {
             v1 = '0'
@@ -38,16 +43,7 @@ const DataTable = () => {
         return parseFloat(v1.replace(NUMBER_ONLY, '')) - parseFloat(v2.replace(NUMBER_ONLY, ''))
     }
 
-    if (data) {
-        data.map((each, index) => {
-            let { id, market_cap_rank, name, image, symbol, current_price, price_change_percentage_1h_in_currency, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, total_volume, market_cap, sparkline_in_7d } = each
-            name = { name, image, symbol }
-            const sparkline = sparkline_in_7d.price
-            rows.push({ id, market_cap_rank, name, current_price: formatNumberWithCurrency(current_price), price_change_percentage_1h_in_currency, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, total_volume: formatNumberWithCurrency(total_volume), market_cap: formatNumberWithCurrency(market_cap), sparkline })
-            return index
-        })
-    }
-
+    // Set color to price_change_percentage
     const setColorForVolume = (values, priceName) => {
         let value
         if (priceName === 'price_change_percentage_1h_in_currency') {
@@ -77,6 +73,17 @@ const DataTable = () => {
 
     }
 
+    // Put data into rows
+    if (data) {
+        data.map((each, index) => {
+            let { id, market_cap_rank, name, image, symbol, current_price, price_change_percentage_1h_in_currency, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, total_volume, market_cap, sparkline_in_7d } = each
+            name = { name, image, symbol }
+            const sparkline = sparkline_in_7d.price
+            rows.push({ id, market_cap_rank, name, current_price: formatNumberWithCurrency(current_price), price_change_percentage_1h_in_currency, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, total_volume: formatNumberWithCurrency(total_volume), market_cap: formatNumberWithCurrency(market_cap), sparkline })
+            return index
+        })
+    }
+
     const columns = [
         {
             field: 'market_cap_rank',
@@ -93,6 +100,7 @@ const DataTable = () => {
             headerClassName: 'super-app-theme--header',
             headerAlign: 'center',
             sortable: false,
+            // Set the logo, title and symbol into the name
             renderCell: (values) => (
                 <div className='dataTable__name'>
                     <img className='dataTable__name__img' src={values.value.image} alt={values.value.name} />
@@ -171,6 +179,7 @@ const DataTable = () => {
             align: 'center',
             headerAlign: 'center',
             sortable: false,
+            // Show the line chart
             renderCell: (values) => {
                 return values.value ? <TrendLineChart data={values.value} /> : <></>
             }

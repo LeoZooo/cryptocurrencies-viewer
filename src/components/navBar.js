@@ -12,6 +12,7 @@ const NavBar = () => {
     const dispatch = useDispatch();
     const currencies = useSelector((state) => state.cryptoSlice.currencies)
 
+    // Transfer currencies' type
     const handleChange = (event) => {
         dispatch(setCurrencies(event.target));
     };

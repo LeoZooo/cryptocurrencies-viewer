@@ -10,11 +10,11 @@ import PaginationRounded from './components/pagination'
 import { PAGINATION } from './static/constant'
 import './App.scss'
 
-
 const App = () => {
   const dispatch = useDispatch()
   const { data } = useGetCoinsSizeQuery()
 
+  // Get page number of data
   useEffect(() => {
     if (data) {
       const maxPage = parseInt((data.length / PAGINATION)) + 1
