@@ -6,7 +6,7 @@ const currencyComapre = (v1, v2) => {
     if (v1 === '-') {
         v1 = '0'
     }
-    else if (v2 === '-') {
+    if (v2 === '-') {
         v2 = '0'
     }
     return parseFloat(v1.replace(NUMBER_ONLY, '')) - parseFloat(v2.replace(NUMBER_ONLY, ''))
