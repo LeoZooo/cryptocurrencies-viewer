@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -19,9 +20,12 @@ const NavBar = () => {
 
     return (
         <header className='nav'>
-            <h2 className='nav__title'>
+            <Link
+                className='nav__title'
+                to='/'
+            >
                 Cryptocurrencies Viewer
-            </h2>
+            </Link>
             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                 <InputLabel id="demo-select-small-label">Currencies</InputLabel>
                 <Select

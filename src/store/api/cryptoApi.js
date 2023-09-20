@@ -26,10 +26,19 @@ export const cryptoApi = createApi({
             // Remove cache
             keepUnusedDataFor: 0
         }),
+        // Get single data
+        getSingleCoins: builder.query({
+            query(id) {
+                return `coins/${id}`
+            },
+            providesTags: [TYPE.CRYPTO],
+            keepUnusedDataFor: 60
+        }),
     })
 })
 
 export const {
     useGetCoinsSizeQuery,
     useGetCoinsQuery,
+    useGetSingleCoinsQuery,
 } = cryptoApi;
