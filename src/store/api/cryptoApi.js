@@ -10,6 +10,11 @@ export const cryptoApi = createApi({
     tagTypes: [TYPE.CRYPTO],
 
     endpoints: (builder) => ({
+        getResponse: builder.query({
+            query() {
+                return 'ping'
+            },
+        }),
         // Get page number of data
         getCoinsSize: builder.query({
             query() {
@@ -38,6 +43,7 @@ export const cryptoApi = createApi({
 })
 
 export const {
+    useGetResponseQuery,
     useGetCoinsSizeQuery,
     useGetCoinsQuery,
     useGetSingleCoinsQuery,

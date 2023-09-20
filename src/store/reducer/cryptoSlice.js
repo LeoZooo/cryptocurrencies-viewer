@@ -15,6 +15,7 @@ export const cryptoSlice = createSlice({
         },
         setPage(state, action) {
             state.currPage = action.payload;
+
         },
         setMaxPage(state, action) {
             state.maxPage = action.payload;

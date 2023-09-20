@@ -93,7 +93,7 @@ const DataTable = () => {
             headerClassName: 'super-app-theme--header',
             align: 'right',
             headerAlign: 'right',
-            renderCell: (values) => setColorForVolume(values, 'price_change_percentage_1h_in_currency')
+            renderCell: (values) => setColorForVolume(values)
         },
         {
             field: 'price_change_percentage_24h_in_currency',
@@ -103,7 +103,7 @@ const DataTable = () => {
             headerClassName: 'super-app-theme--header',
             align: 'right',
             headerAlign: 'right',
-            renderCell: (values) => setColorForVolume(values, 'price_change_percentage_24h_in_currency')
+            renderCell: (values) => setColorForVolume(values)
         },
         {
             field: 'price_change_percentage_7d_in_currency',
@@ -113,7 +113,7 @@ const DataTable = () => {
             headerClassName: 'super-app-theme--header',
             align: 'right',
             headerAlign: 'right',
-            renderCell: (values) => setColorForVolume(values, 'price_change_percentage_7d_in_currency')
+            renderCell: (values) => setColorForVolume(values)
         },
         {
             field: 'total_volume',
