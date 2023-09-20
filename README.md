@@ -34,7 +34,7 @@
 ## Usage & Testing
 
 - Run `npm start` to run the app
-- Run `npm start` to run the test
+- Run `npm test` to run the test
 
 ## Exploration
 - Using DataGridPro to achieve a better-responsive layout for web pages. (eg. Stick the first column)
