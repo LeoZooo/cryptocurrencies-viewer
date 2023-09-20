@@ -29,12 +29,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "test": "react-scripts test",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
+      "react-app/jest"
     ]
   },
   "browserslist": {
