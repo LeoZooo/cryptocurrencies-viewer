@@ -64,7 +64,6 @@ $pearl-white: rgb(228, 228, 228);
         &:hover {
             color: $light-grey;
             transform: scale(1.01);
-
         }
 
         .dataTable__name__img {
@@ -74,11 +73,9 @@ $pearl-white: rgb(228, 228, 228);
 
         .dataTable__name__symbol {
             margin-left: 10px;
-            font: 25px;
             color: $light-grey;
         }
     }
-
 }
 
 .pagination {
@@ -89,4 +86,88 @@ $pearl-white: rgb(228, 228, 228);
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+* {
+    .singlePage__data__tag {
+        text-align: center;
+        margin: 30px;
+        padding-top: 5px;
+        width: 90px;
+        height: 30px;
+        background-color: $deep-grey;
+        color: $pearl-white;
+        border-radius: 5px;
+    }
+
+    .singlePage__data__img {
+        height: 30px;
+        margin: 0 10px 15px 0px;
+    }
+
+    .singlePage__data__symbol {
+        margin-left: 15px;
+        margin-top: 2px;
+        font-size: 20px;
+        color: $light-grey;
+    }
+
+    .singlePage__data__currprice {
+        letter-spacing: 1.5px;
+    }
+
+    .singlePage__data__font {
+        font-size: 15px;
+        color: $deep-grey;
+        margin: 5px 3px 30px 0;
+        opacity: 80%;
+    }
+
+    .singlePage__data__price {
+        font-size: 15px;
+        color: red;
+        margin: 5px 30px 30px 0;
+        opacity: 80%;
+    }
+
+    .singlePage__data__price--green {
+        color: green;
+    }
+
+    .singlePage__data__form__font {
+        font-size: 15px;
+        color: $deep-grey;
+        opacity: 60%;
+    }
+
+    .singlePage__info__title {
+        margin: 80px 0 50px 0;
+    }
+
+    .singlePage__info__font {
+        margin-top: 6px;
+    }
+
+    .singlePage__info__button {
+        padding: 2px;
+        margin-bottom: 10px;
+        width: 100px;
+        background-color: $pearl-white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: all 0.5s ease;
+        box-shadow: 2px 5px 5px $light-grey;
+
+        &:hover {
+            color: $light-grey;
+            transform: scale(1.02);
+        }
+    }
+
+    .singlePage__info__description {
+        margin: 50px 30px 30px 30px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
 }

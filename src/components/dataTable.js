@@ -6,7 +6,10 @@ import { DataGrid } from '@mui/x-data-grid';
 import Loading from './loading'
 import TrendLineChart from './trendLineChart'
 import { useGetCoinsQuery } from '../store/api/cryptoApi'
-import { SECOND_45, NUMBER_ONLY } from '../static/constant'
+import formatNumberWithCurrency from '../utils/formatNumberWithCurrency'
+import setColorForVolume from '../utils/setColorForVolume'
+import currencyComapre from '../utils/currencyComapre'
+import { SECOND_45 } from '../static/constant'
 
 const DataTable = () => {
     const navigate = useNavigate();
@@ -18,70 +21,31 @@ const DataTable = () => {
     })
     const rows = []
 
-    // Transfer nmumber to currencies 
-    // eg. 3.1 -> 'A$3.1', undefined -> '-'
-    const formatNumberWithCurrency = (number) => {
-        if (!number) {
-            return '-'
-        }
-
-        const formattedNumber = number.toLocaleString(undefined, {
-            style: 'currency',
-            currency: currencies,
-            minimumFractionDigits: 0,
-        });
-        return formattedNumber;
-    }
-
-    // Compare currencies type's data
-    // eg. v1 = A$34352.1 -> 34352.1 then compare
-    const currencyComapre = (v1, v2) => {
-        if (v1 === '-') {
-            v1 = '0'
-        }
-        else if (v2 === '-') {
-            v2 = '0'
-        }
-        return parseFloat(v1.replace(NUMBER_ONLY, '')) - parseFloat(v2.replace(NUMBER_ONLY, ''))
-    }
-
-    // Set color to price_change_percentage
-    const setColorForVolume = (values, priceName) => {
-        let value
-        if (priceName === 'price_change_percentage_1h_in_currency') {
-            value = values.value
-        }
-        else if (priceName === 'price_change_percentage_24h_in_currency') {
-            value = values.value
-        }
-        else {
-            value = values.value
-        }
-
-        if (!value) {
-            return '-'
-        }
-
-        value = Number(value).toFixed(1)
-        if (value === 0) {
-            value = 0
-        }
-        if (+value >= 0) {
-            return <p style={{ color: 'green' }}>{value += '%'}</p>
-        }
-        else {
-            return <p style={{ color: 'red' }}>{value += '%'}</p>
-        }
-
-    }
-
     // Put data into rows
     if (data) {
         data.map((each, index) => {
-            let { id, market_cap_rank, name, image, symbol, current_price, price_change_percentage_1h_in_currency, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, total_volume, market_cap, sparkline_in_7d } = each
+            let {
+                id, market_cap_rank, name, image, symbol, current_price,
+                price_change_percentage_1h_in_currency,
+                price_change_percentage_24h_in_currency,
+                price_change_percentage_7d_in_currency,
+                total_volume,
+                market_cap,
+                sparkline_in_7d
+            } = each
             name = { name, image, symbol }
             const sparkline = sparkline_in_7d.price
-            rows.push({ id, market_cap_rank, name, current_price: formatNumberWithCurrency(current_price), price_change_percentage_1h_in_currency, price_change_percentage_24h_in_currency, price_change_percentage_7d_in_currency, total_volume: formatNumberWithCurrency(total_volume), market_cap: formatNumberWithCurrency(market_cap), sparkline })
+            rows.push({
+                id, market_cap_rank, name,
+                current_price: formatNumberWithCurrency(current_price, currencies),
+                price_change_percentage_1h_in_currency,
+                price_change_percentage_24h_in_currency,
+                price_change_percentage_7d_in_currency,
+                total_volume: formatNumberWithCurrency(total_volume, currencies),
+                market_cap: formatNumberWithCurrency(market_cap, currencies),
+                sparkline
+            })
+
             return index
         })
     }
