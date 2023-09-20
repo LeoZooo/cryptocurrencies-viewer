@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/cryptocurrencies-viewer/static/css/main.52b252f1.css",
+    "main.js": "/cryptocurrencies-viewer/static/js/main.1aea1f9d.js",
+    "static/media/load.gif": "/cryptocurrencies-viewer/static/media/load.128b4cda6a0e76b68c74.gif",
+    "index.html": "/cryptocurrencies-viewer/index.html",
+    "main.52b252f1.css.map": "/cryptocurrencies-viewer/static/css/main.52b252f1.css.map",
+    "main.1aea1f9d.js.map": "/cryptocurrencies-viewer/static/js/main.1aea1f9d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.52b252f1.css",
+    "static/js/main.1aea1f9d.js"
+  ]
+}
