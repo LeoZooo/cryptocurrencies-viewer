@@ -1,7 +1,7 @@
 # cryptocurrencies-viewer
 
 "Cryptocurrencies Viewer" is an app for tracking cryptocurrency market data in real-time. 
-The website has been deployed on #Netlify and can be accessed #[here](https://cryptocurrencies-viewer.netlify.app/)
+The website has been deployed on Netlify and can be accessed [here](https://cryptocurrencies-viewer.netlify.app/)
 
 ## Table of Contents
 
