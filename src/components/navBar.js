@@ -7,7 +7,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 import { setCurrencies } from '../store/reducer/cryptoSlice'
-import { CURRENCIES_TYPE } from '../static/constant'
+import { CURRENCIES_TYPE } from '../constant'
 
 const NavBar = () => {
     const dispatch = useDispatch();

@@ -9,7 +9,7 @@ import NavBar from './components/navBar'
 import DataTable from './components/dataTable'
 import PaginationRounded from './components/pagination'
 import SinglePage from './components/singlePage'
-import { PAGINATION } from './static/constant'
+import { PAGINATION } from './constant'
 import './App.scss'
 
 const App = () => {

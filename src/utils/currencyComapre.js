@@ -1,4 +1,4 @@
-import { NUMBER_ONLY } from '../static/constant'
+import { NUMBER_ONLY } from '../constant'
 
 // Compare currencies type's data
 // eg. v1 = A$34352.1 -> 34352.1 then compare

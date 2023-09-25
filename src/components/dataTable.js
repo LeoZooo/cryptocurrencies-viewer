@@ -9,7 +9,7 @@ import { useGetCoinsQuery } from '../store/api/cryptoApi'
 import formatNumberWithCurrency from '../utils/formatNumberWithCurrency'
 import setColorForVolume from '../utils/setColorForVolume'
 import currencyComapre from '../utils/currencyComapre'
-import { SECOND_45 } from '../static/constant'
+import { SECOND_45 } from '../constant'
 
 const DataTable = () => {
     const navigate = useNavigate();
@@ -19,9 +19,9 @@ const DataTable = () => {
     const { isSuccess, data } = useGetCoinsQuery(config, {
         pollingInterval: SECOND_45,
     })
-    const rows = []
 
     // Put data into rows
+    const rows = []
     if (data) {
         data.map((each, index) => {
             let {

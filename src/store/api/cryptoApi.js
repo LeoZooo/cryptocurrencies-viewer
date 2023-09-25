@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 
-import { URL, TYPE } from '../../static/constant'
+import { URL, TYPE } from '../../constant'
 
 export const cryptoApi = createApi({
     reducerPath: 'cryptoApi',
@@ -14,12 +14,18 @@ export const cryptoApi = createApi({
             query() {
                 return 'ping'
             },
+            transformErrorResponse: (error) => {
+                console.error(`getResponse error ${error.status},\n info: ${error.data.error}`);
+            }
         }),
         // Get page number of data
         getCoinsSize: builder.query({
             query() {
                 return 'coins/list'
             },
+            transformErrorResponse: (error) => {
+                console.error(`getCoinsSize error ${error.status},\n info: ${error.data.error}`);
+            }
         }),
         // Get total data
         getCoins: builder.query({
@@ -29,7 +35,10 @@ export const cryptoApi = createApi({
             },
             providesTags: [TYPE.CRYPTO],
             // Remove cache
-            keepUnusedDataFor: 0
+            keepUnusedDataFor: 0,
+            transformErrorResponse: (error) => {
+                console.error(`getCoins error ${error.status},\n info: ${error.data.error}`);
+            }
         }),
         // Get single data
         getSingleCoins: builder.query({
@@ -37,7 +46,10 @@ export const cryptoApi = createApi({
                 return `coins/${id}`
             },
             providesTags: [TYPE.CRYPTO],
-            keepUnusedDataFor: 60
+            keepUnusedDataFor: 60,
+            transformErrorResponse: (error) => {
+                console.error(`getSingleCoins error ${error.status},\n info: ${error.data.error}`);
+            }
         }),
     })
 })
@@ -47,4 +59,9 @@ export const {
     useGetCoinsSizeQuery,
     useGetCoinsQuery,
     useGetSingleCoinsQuery,
-} = cryptoApi;
+} = cryptoApi
+
+
+
+
+

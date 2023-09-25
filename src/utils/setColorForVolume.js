@@ -16,9 +16,7 @@ const setColorForVolume = (values) => {
     else if (+value === 0) {
         return <p style={{ color: 'green' }}>0</p>
     }
-    else {
-        return <p style={{ color: 'red' }}>{value += '%'}</p>
-    }
+    return <p style={{ color: 'red' }}>{value += '%'}</p>
 }
 
 export default setColorForVolume

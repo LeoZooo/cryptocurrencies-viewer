@@ -4,7 +4,7 @@ import { GridComponent } from 'echarts/components';
 import 'echarts/lib/chart/line';
 import { v4 as uuidv4 } from 'uuid';
 
-import { LIGHT_GREEN, LIGHT_RED } from '../static/constant'
+import { LIGHT_GREEN, LIGHT_RED } from '../constant'
 
 const TrendLineChart = ({ data }) => {
     // Generate unique id for data
@@ -41,7 +41,7 @@ const TrendLineChart = ({ data }) => {
             series: [{
                 type: 'line',
                 data: data,
-                smooth: true, 
+                smooth: true,
                 symbol: 'none',
                 lineStyle: {
                     width: 1,

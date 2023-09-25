@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { CURRENCIES_TYPE } from '../../static/constant'
+import { CURRENCIES_TYPE } from '../../constant'
 
 export const cryptoSlice = createSlice({
     name: "cryptoSlice",

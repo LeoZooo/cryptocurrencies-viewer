@@ -1,6 +1,6 @@
 import React from 'react';
 
-import laodPic from '../static/picture/load.gif'
+import laodPic from '../static/load.gif'
 
 const Loading = () => {
   return (
